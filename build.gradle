@@ -242,6 +242,33 @@ shadowJar {
     mergeServiceFiles()
 }
 
+// Deactivate zip generations in distributions folder as they are not very useful and take relatively much build time.
+tasks.distZip.enabled = false
+tasks.shadowDistZip.enabled = false
+
+// Configuration of net.researchgate.release plugin
+release {
+    failOnCommitNeeded = true // Fail because changed files would be committed automatically
+    failOnUnversionedFiles = false // Don't fail because non-versioned files would not be committed automatically
+    git {
+        // Depends on old vs. new default branch
+        requireBranch = 'master'
+        // requireBranch = 'main'
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    reports {
+        html.enabled = true
+    }
+}
+
 graalvmNative.toolchainDetection = false
 micronaut {
     runtime("netty")
