@@ -78,7 +78,6 @@ repositories {
 //    }
 }
 
-// TODO: thats not in greeter
 application {
     mainClass.set("com.example.ApplicationKt")
 }
@@ -87,7 +86,6 @@ application {
 version = "0.1"
 group = "com.example"
 
-// TODO: thats different in greeter
 dependencies {
     // If no specific version is defined, it might be provided by the Micronaut BOM
 
@@ -328,7 +326,6 @@ graalvmNative {
     }
 }
 
-// TODO: tahts not in greeter
 graalvmNative.toolchainDetection = false
 
 // Filter out beta versions et cetera on dependency update check.
@@ -372,7 +369,6 @@ task copyOpenAPI(dependsOn: ['kaptKotlin'], type: Copy) {
 }
 tasks.build.dependsOn copyOpenAPI
 
-// TODO: thats not in greeter
 micronaut {
     runtime("netty")
     testRuntime("junit5")
