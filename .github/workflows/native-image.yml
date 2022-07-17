@@ -27,8 +27,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'zulu'
+          java-version: 22.1.0.r17
+          jdkFile: ${{ steps.sdkman.outputs.file }}
 
       - name: Ensure traditional build works
         run: ./gradlew build
