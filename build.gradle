@@ -197,18 +197,15 @@ java {
     targetCompatibility = JavaVersion.VERSION_17 // Byte code will be this JVM version
 }
 
-tasks {
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_17 // Byte code will be this JVM version
-        }
-    }
-    compileTestKotlin {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_17 // Byte code will be this JVM version
-        }
+// Kotlin configuration (implies compileKotlin and compileTestKotlin)
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17 // Byte code will be this JVM version
+        // Retain parameter names for Java reflection
+        javaParameters = true
     }
 }
+
 graalvmNative.toolchainDetection = false
 micronaut {
     runtime("netty")
