@@ -1,24 +1,47 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.7.10"
-    id("org.jetbrains.kotlin.kapt") version "1.7.10"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.7.10"
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+
+    // Kotlin annotations processor (needed by Micronaut)
+    id 'org.jetbrains.kotlin.kapt'
+
+    // Needed for Bean Validation https://docs.micronaut.io/latest/guide/index.html#beanValidation.
+    // Unsure, if there is another reason for it.
+    // TODO: configure allopen to only open @Validated classes
+    id 'org.jetbrains.kotlin.plugin.allopen'
+
+    // Check updated dependencies with "./gradlew dependencyUpdates".
+    id 'com.github.ben-manes.versions'
+
+    // Release version with "./gradlew release".
+    id 'net.researchgate.release'
 
     // Bundle all dependencies into one fat shadowed jar.
     // (Gets automatically triggered when application plugin is present)
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id 'com.github.johnrengelman.shadow'
 
     // Add no-argument constructors as they are needed for JPA (see https://kotlinlang.org/docs/reference/compiler-plugins.html#jpa-support).
-    id "org.jetbrains.kotlin.plugin.jpa" version "1.7.10"
+    id "org.jetbrains.kotlin.plugin.jpa"
 
     // Plugin for gRPC protobuf generation
-    id 'com.google.protobuf' version "0.8.19"
+    id 'com.google.protobuf'
 
-    //id("io.micronaut.application") version "3.5.0" // is equivalent to:
-    id 'io.micronaut.minimal.application' version '3.5.0'
-    //id 'io.micronaut.docker' version '3.5.0'
-    id 'io.micronaut.graalvm' version '3.5.0'
-    //id 'application'
+    // List all licenses in "build/reports/dependency-license" with "./gradlew generateLicenseReport".
+    id 'com.github.jk1.dependency-license-report'
+
+    // Adds the following plugins (see https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/):
+    // io.micronaut.minimal.application (adds application)
+    //   Create start scripts; is executed on "build" task but not on e.g. "jar" task.
+    // io.micronaut.graalvm
+    //   Build GraalVM native-image with "./gradlew nativeCompile"
+    //   Run with "./gradlew nativeRun"
+    //   Relies on https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html)
+    // io.micronaut.docker
+    id "io.micronaut.application" version "3.5.0"
 }
+// Enhance Hibernate entities (see configuration block below).
+// TODO: move to plugins block when https://hibernate.atlassian.net/browse/HHH-13354 is resolved
+apply plugin: 'org.hibernate.orm'
 
 
 version = "0.1"
