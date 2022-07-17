@@ -92,6 +92,10 @@ dependencies {
     // Micronaut HTTP Client
     implementation "io.micronaut:micronaut-http-client"
 
+    // Micronaut Management & Monitoring
+    /// Automatically provides the /health endpoint publicly, and some other with authentication
+    implementation 'io.micronaut:micronaut-management'
+    //implementation 'io.micronaut.configuration:micronaut-jmx' // activate JMX for the endpoints
 }
 
 
