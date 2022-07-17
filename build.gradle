@@ -236,6 +236,12 @@ jar {
     }
 }
 
+// Appends entries in META-INF/services resources into a single resource. Not sure, if needed.
+// See: https://github.com/johnrengelman/shadow/blob/master/src/main/groovy/com/github/jengelman/gradle/plugins/shadow/transformers/ServiceFileTransformer.groovy
+shadowJar {
+    mergeServiceFiles()
+}
+
 graalvmNative.toolchainDetection = false
 micronaut {
     runtime("netty")
