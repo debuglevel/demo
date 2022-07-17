@@ -226,6 +226,16 @@ kapt {
     }
 }
 
+// Jar configuration
+jar {
+    // add Manifest to jar
+    manifest {
+        attributes 'Implementation-Title': applicationTitle,
+                'Implementation-Version': version,
+                'Main-Class': _mainClass
+    }
+}
+
 graalvmNative.toolchainDetection = false
 micronaut {
     runtime("netty")
