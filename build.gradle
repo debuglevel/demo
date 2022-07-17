@@ -177,6 +177,13 @@ graalvmNative {
     }
 }
 
+ext {
+    _group = applicationGroup
+    _module = applicationModule
+    _mainClass = _group + "." + _module + ".Application"
+    _title = applicationTitle
+}
+
 // Enable gradle incremental annotation processing for Java.
 tasks.withType(JavaCompile) {
     options.compilerArgs = [
