@@ -78,13 +78,16 @@ repositories {
 //    }
 }
 
+// TODO: thats not in greeter
+application {
+    mainClass.set("com.example.ApplicationKt")
+}
 
-
-
-
+// TODO: thats not in greeter
 version = "0.1"
 group = "com.example"
 
+// TODO: thats different in greeter
 dependencies {
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
@@ -186,11 +189,6 @@ dependencies {
     implementation "io.micronaut.grpc:micronaut-grpc-client-runtime"
     implementation "io.grpc:grpc-services:$grpcVersion"
     implementation "io.grpc:grpc-kotlin-stub:$grpcKotlinVersion"
-}
-
-
-application {
-    mainClass.set("com.example.ApplicationKt")
 }
 
 // Java configuration
