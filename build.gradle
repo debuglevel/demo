@@ -42,12 +42,8 @@ plugins {
     id 'com.github.jk1.dependency-license-report'
 
     // Adds the following plugins (see https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/):
-    // io.micronaut.minimal.application
-    //   Adds application plugin
-    //     Adds java plugin
-    //     Adds distribution plugin
-    //     Run with "./gradlew run"
-    //     Generates start scripts; is executed on "build" task but not on e.g. "jar" task.
+    // io.micronaut.minimal.application (adds application)
+    //   Create start scripts; is executed on "build" task but not on e.g. "jar" task.
     // io.micronaut.graalvm
     //   Build GraalVM native-image with "./gradlew nativeCompile"
     //   Run with "./gradlew nativeRun"
@@ -62,15 +58,13 @@ apply plugin: 'org.hibernate.orm'
 ext {
     _group = applicationGroup
     _module = applicationModule
-    _mainClass = _group + "." + _module + ".ApplicationKt"
+    _mainClass = _group + "." + _module + ".Application"
     _title = applicationTitle
 }
 
-// application plugin configuration
-application {
-    mainClass = _mainClass
-    applicationName = _title
-}
+// Application plugin configuration
+applicationName = _title
+mainClassName = _mainClass
 
 repositories {
     mavenCentral()
@@ -83,6 +77,14 @@ repositories {
 ////        }
 //    }
 }
+
+application {
+    mainClass.set("com.example.ApplicationKt")
+}
+
+// // TODO: thats not in greeter
+// version = "0.1"
+// group = "com.example"
 
 dependencies {
     // If no specific version is defined, it might be provided by the Micronaut BOM
@@ -312,10 +314,6 @@ protobuf {
 }
 
 graalvmNative {
-    // Gradle may not properly detect the correct toolchain.
-    // This will search in 1. GRAALVM_HOME and 2. JAVA_HOME for a GraalVM installation and use it.
-    toolchainDetection = false
-
     binaries {
         main {
             // debug = true // Generate debug info
@@ -323,13 +321,12 @@ graalvmNative {
 
             buildArgs.add("--trace-class-initialization=kotlin.KotlinVersion,kotlin.jvm.internal.Reflection")
 
-            // Workaround for failing build; see https://github.com/micronaut-projects/micronaut-core/issues/7107
-            // TODO: Might also be solved by using the micronaut-kotlin project. // we already use it.
-            // TODO: untested
-            //buildArgs.add("--initialize-at-build-time=kotlin.KotlinVersion,kotlin.jvm.internal.Reflection")
+            buildArgs.add("-Ob")
         }
     }
 }
+
+graalvmNative.toolchainDetection = false
 
 // Filter out beta versions et cetera on dependency update check.
 dependencyUpdates.resolutionStrategy {

@@ -8,3 +8,4 @@ fun main(args: Array<String>) {
 	logger.info("Starting up...");
 	run(*args)
 }
+
