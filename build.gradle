@@ -55,14 +55,35 @@ plugins {
 // TODO: move to plugins block when https://hibernate.atlassian.net/browse/HHH-13354 is resolved
 apply plugin: 'org.hibernate.orm'
 
+ext {
+    _group = applicationGroup
+    _module = applicationModule
+    _mainClass = _group + "." + _module + ".Application"
+    _title = applicationTitle
+}
+
+// Application plugin configuration
+applicationName = _title
+mainClassName = _mainClass
+
+repositories {
+    mavenCentral()
+//    mavenLocal()
+//    maven {
+//        url "https://jitpack.io"
+////        // Workaround to be able to specify a git hash as jitpack version
+////        metadataSources {
+////            artifact()
+////        }
+//    }
+}
+
+
+
 
 
 version = "0.1"
 group = "com.example"
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     implementation("io.micronaut:micronaut-jackson-databind")
@@ -213,12 +234,7 @@ graalvmNative {
     }
 }
 
-ext {
-    _group = applicationGroup
-    _module = applicationModule
-    _mainClass = _group + "." + _module + ".Application"
-    _title = applicationTitle
-}
+
 
 // Enable gradle incremental annotation processing for Java.
 tasks.withType(JavaCompile) {
