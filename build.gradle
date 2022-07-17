@@ -96,6 +96,22 @@ dependencies {
     /// Automatically provides the /health endpoint publicly, and some other with authentication
     implementation 'io.micronaut:micronaut-management'
     //implementation 'io.micronaut.configuration:micronaut-jmx' // activate JMX for the endpoints
+
+        // Micronaut Persistence
+    kapt "io.micronaut.data:micronaut-data-processor"
+    implementation "io.micronaut.data:micronaut-data-hibernate-jpa"
+    /// JDBC Connection Pooling
+    runtimeOnly "io.micronaut.sql:micronaut-jdbc-hikari"
+    //runtimeOnly "io.micronaut.sql:micronaut-jdbc-tomcat"
+    //runtimeOnly "io.micronaut.sql:micronaut-jdbc-dbcp"
+    /// Database drivers
+    runtimeOnly "com.h2database:h2"
+    runtimeOnly "org.mariadb.jdbc:mariadb-java-client:$mariadbVersion"
+    //runtimeOnly "org.postgresql:postgresql:$postgresqlVersion"
+    //runtimeOnly "org.hsqldb:hsqldb:$hsqldbVersion"
+    //runtimeOnly "org.apache.derby:derby:$derbyVersion"
+    /// Database Migration
+    implementation "io.micronaut.liquibase:micronaut-liquibase"
 }
 
 
