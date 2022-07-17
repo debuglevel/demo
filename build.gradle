@@ -200,3 +200,28 @@ allOpen {
     //// open @Singleton for Mockito
     //annotation("javax.inject.Singleton")
 }
+
+
+// gRPC
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/grpckt'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:$protocVersion" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion" }
+        grpckt { artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion:jdk8@jar" }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+            grpckt {}
+        }
+    }
+}
