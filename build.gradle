@@ -95,6 +95,8 @@ dependencies {
 
 
 
+    // If no specific version is defined, it might be provided by the Micronaut BOM
+
     // Kotlin
     /// Provide kotlin-reflect although not used, as the jackson-kotlin module might provide its own, but maybe for an earlier Kotlin version, which would mess up things (or at least yield warnings).
     implementation "org.jetbrains.kotlin:kotlin-reflect"
@@ -118,6 +120,7 @@ dependencies {
     runtimeOnly "net.logstash.logback:logstash-logback-encoder:$logstashLogbackVersion"
     runtimeOnly "com.mattbertolini:liquibase-slf4j:$liquibaseSlf4jVersion" // makes Liquibase use SLF4J instead of java.util.logging
     runtimeOnly "org.slf4j:jcl-over-slf4j:$jclOverSlf4jVersion" // redirect Jakarta/Apache Commons Logging to SLF4J
+
 
     // Micronaut Bill of Materials, which defines dependency versions
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
@@ -144,7 +147,6 @@ dependencies {
     // Micronaut Validation
     kapt "io.micronaut:micronaut-validation"
     //implementation 'io.micronaut.configuration:micronaut-hibernate-validator' // if full Bean Validator 2.0 compliance is needed
-    implementation("io.micronaut:micronaut-validation") // TODO: this is not in my config
 
     // Micronaut HTTP Server
     implementation "io.micronaut:micronaut-http-server-netty"
@@ -157,7 +159,7 @@ dependencies {
     implementation 'io.micronaut:micronaut-management'
     //implementation 'io.micronaut.configuration:micronaut-jmx' // activate JMX for the endpoints
 
-        // Micronaut Persistence
+    // Micronaut Persistence
     kapt "io.micronaut.data:micronaut-data-processor"
     implementation "io.micronaut.data:micronaut-data-hibernate-jpa"
     /// JDBC Connection Pooling
@@ -184,11 +186,22 @@ dependencies {
     kapt "io.micronaut.openapi:micronaut-openapi"
     implementation "io.swagger.core.v3:swagger-annotations"
 
+    // Micronaut Views
+    //implementation "io.micronaut.views:micronaut-views-thymeleaf"
+    //implementation "io.micronaut.views:micronaut-views-handlebars"
+    //implementation "io.micronaut.views:micronaut-views-velocity"
+    //implementation "io.micronaut.views:micronaut-views-freemarker"
+    //implementation "io.micronaut.views:micronaut-views-rocker"
+    //implementation "io.micronaut.views:micronaut-views-soy"
+
     // Micronaut gRPC
     implementation "io.micronaut.grpc:micronaut-grpc-server-runtime"
     implementation "io.micronaut.grpc:micronaut-grpc-client-runtime"
     implementation "io.grpc:grpc-services:$grpcVersion"
     implementation "io.grpc:grpc-kotlin-stub:$grpcKotlinVersion"
+
+    // Debuglevel Microservice Commons
+    //implementation "com.github.debuglevel:microservice-commons:f24dd3964f"
 }
 
 // Java configuration
