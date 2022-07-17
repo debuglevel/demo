@@ -29,7 +29,6 @@ repositories {
 }
 
 dependencies {
-    kapt("io.micronaut:micronaut-http-validation")
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
 
@@ -85,6 +84,7 @@ dependencies {
     // Micronaut Validation
     kapt "io.micronaut:micronaut-validation"
     //implementation 'io.micronaut.configuration:micronaut-hibernate-validator' // if full Bean Validator 2.0 compliance is needed
+    implementation("io.micronaut:micronaut-validation") // TODO: this is not in my config
 
     // Micronaut HTTP Server
     implementation "io.micronaut:micronaut-http-server-netty"
