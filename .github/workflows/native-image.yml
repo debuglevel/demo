@@ -22,7 +22,7 @@ jobs:
         id: sdkman
         with:
           candidate: java
-          version: 22.1.0-grl
+          version: 22.1.0.r17-grl
 
       - name: Set up JDK
         uses: actions/setup-java@v3
