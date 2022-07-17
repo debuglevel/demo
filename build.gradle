@@ -89,12 +89,6 @@ group = "com.example"
 
 // TODO: thats different in greeter
 dependencies {
-    implementation("io.micronaut:micronaut-jackson-databind")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-
-
-
-
     // If no specific version is defined, it might be provided by the Micronaut BOM
 
     // Kotlin
