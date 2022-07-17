@@ -1,13 +1,15 @@
-name: "nativeCompile"
+name: "Native-Image"
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "master" ]
 
 jobs:
-  native-compile:
+  build-docker-image:
+    name: Build native image in Docker
+
     runs-on: ubuntu-latest
     
     permissions:
@@ -17,21 +19,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Install GraalVM 22.1.0 using SDKMAN
-        uses: sdkman/sdkman-action@master
-        id: sdkman
+      - name: Build Docker image
+        uses: docker/build-push-action@v3
         with:
-          candidate: java
-          version: 22.1.0.r17-grl
-
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: 22.1.0.r17
-          jdkFile: ${{ steps.sdkman.outputs.file }}
-
-      - name: Ensure traditional build works
-        run: ./gradlew build
-
-      - name: Native compile
-        run: ./gradlew nativeCompile
+          context: .
+          push: false
