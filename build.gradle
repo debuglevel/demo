@@ -79,6 +79,11 @@ dependencies {
     kapt "io.micronaut:micronaut-inject-java"
     kaptTest "io.micronaut:micronaut-inject-java"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+
+    // Micronaut Reactive
+    //implementation "io.micronaut.rxjava2:micronaut-rxjava2" // use RxJava2 for existing implementations (e.g. ConfigurableCredentialAuthenticationProvider)
+    implementation "io.micronaut.reactor:micronaut-reactor"
+    implementation "io.micronaut.reactor:micronaut-reactor-http-client"
 }
 
 
