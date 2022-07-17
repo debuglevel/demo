@@ -74,6 +74,11 @@ dependencies {
     implementation "javax.annotation:javax.annotation-api"
     runtimeOnly "com.fasterxml.jackson.module:jackson-module-kotlin"
     implementation 'org.reactivestreams:reactive-streams' // seems to be needed in Micronaut 3.0.1
+
+    // Micronaut Inversion of Control / Dependency Injection
+    kapt "io.micronaut:micronaut-inject-java"
+    kaptTest "io.micronaut:micronaut-inject-java"
+    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 }
 
 
