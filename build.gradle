@@ -116,6 +116,9 @@ dependencies {
     // Micronaut Security
     kapt "io.micronaut.security:micronaut-security-annotations"
     implementation "io.micronaut.security:micronaut-security"
+
+    // Micronaut Service registration and discovery
+    implementation "io.micronaut.discovery:micronaut-discovery-client"
 }
 
 
