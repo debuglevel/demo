@@ -269,36 +269,20 @@ test {
     }
 }
 
-graalvmNative.toolchainDetection = false
-micronaut {
-    runtime("netty")
-    testRuntime("junit5")
-    processing {
-        incremental(true)
-        annotations("com.example.*")
-    }
-}
-
-graalvmNative {
-    binaries {
-        main {
-            // debug = true // Generate debug info
-            // verbose = true
-
-            buildArgs.add("--trace-class-initialization=kotlin.KotlinVersion,kotlin.jvm.internal.Reflection")
-
-            buildArgs.add("-Ob")
-        }
-    }
-}
-
-
 allOpen {
     annotation("io.micronaut.aop.Around")
     //// open @Singleton for Mockito
     //annotation("javax.inject.Singleton")
 }
 
+// Enhance Hibernate entities in byte code.
+hibernate {
+    enhance {
+        enableLazyInitialization = true
+        enableDirtyTracking = true
+        enableAssociationManagement = true
+    }
+}
 
 // gRPC
 sourceSets {
@@ -323,6 +307,33 @@ protobuf {
         }
     }
 }
+
+
+
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.example.*")
+    }
+}
+
+graalvmNative {
+    binaries {
+        main {
+            // debug = true // Generate debug info
+            // verbose = true
+
+            buildArgs.add("--trace-class-initialization=kotlin.KotlinVersion,kotlin.jvm.internal.Reflection")
+
+            buildArgs.add("-Ob")
+        }
+    }
+}
+
+
 
 // -XX:TieredStopAtLevel=1 limits optimizations of the HotSpot compiler and its runtime overhead (reduce startup time)
 tasks.withType(JavaExec) {
