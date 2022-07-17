@@ -206,6 +206,26 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     }
 }
 
+// Enable gradle incremental annotation processing for Java.
+tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            "-Amicronaut.processing.incremental=true",
+            "-Amicronaut.processing.annotations=${_group}.*",
+            "-Amicronaut.processing.group=${_group}",
+            "-Amicronaut.processing.module=${_module}",
+    ]
+}
+
+// Enable gradle incremental annotation processing for Kotlin.
+kapt {
+    arguments {
+        arg("micronaut.processing.incremental", true)
+        arg("micronaut.processing.annotations", "${_group}.*")
+        arg("micronaut.processing.group", _group)
+        arg("micronaut.processing.module", _module)
+    }
+}
+
 graalvmNative.toolchainDetection = false
 micronaut {
     runtime("netty")
@@ -229,27 +249,6 @@ graalvmNative {
     }
 }
 
-
-
-// Enable gradle incremental annotation processing for Java.
-tasks.withType(JavaCompile) {
-    options.compilerArgs = [
-            "-Amicronaut.processing.incremental=true",
-            "-Amicronaut.processing.annotations=${_group}.*",
-            "-Amicronaut.processing.group=${_group}",
-            "-Amicronaut.processing.module=${_module}",
-    ]
-}
-
-// Enable gradle incremental annotation processing for Kotlin.
-kapt {
-    arguments {
-        arg("micronaut.processing.incremental", true)
-        arg("micronaut.processing.annotations", "${_group}.*")
-        arg("micronaut.processing.group", _group)
-        arg("micronaut.processing.module", _module)
-    }
-}
 
 allOpen {
     annotation("io.micronaut.aop.Around")
