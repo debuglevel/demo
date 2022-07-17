@@ -58,5 +58,13 @@ micronaut {
     }
 }
 
+graalvmNative {
+    binaries {
+        main {
+            // debug = true // Generate debug info
+            // verbose = true
 
-
+            buildArgs.add("--trace-class-initialization=kotlin.KotlinVersion,kotlin.jvm.internal.Reflection")
+        }
+    }
+}
