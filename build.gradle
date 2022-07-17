@@ -225,3 +225,16 @@ protobuf {
         }
     }
 }
+
+// -XX:TieredStopAtLevel=1 limits optimizations of the HotSpot compiler and its runtime overhead (reduce startup time)
+tasks.withType(JavaExec) {
+    //classpath += configurations.developmentOnly
+    jvmArgs('-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
+    if (gradle.startParameter.continuous) {
+        systemProperties(
+                'micronaut.io.watch.restart': 'true',
+                'micronaut.io.watch.enabled': 'true',
+                "micronaut.io.watch.paths": "src/main"
+        )
+    }
+}
