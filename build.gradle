@@ -194,3 +194,9 @@ kapt {
         arg("micronaut.processing.module", _module)
     }
 }
+
+allOpen {
+    annotation("io.micronaut.aop.Around")
+    //// open @Singleton for Mockito
+    //annotation("javax.inject.Singleton")
+}
