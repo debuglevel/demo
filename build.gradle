@@ -66,6 +66,11 @@ dependencies {
     runtimeOnly "net.logstash.logback:logstash-logback-encoder:$logstashLogbackVersion"
     runtimeOnly "com.mattbertolini:liquibase-slf4j:$liquibaseSlf4jVersion" // makes Liquibase use SLF4J instead of java.util.logging
     runtimeOnly "org.slf4j:jcl-over-slf4j:$jclOverSlf4jVersion" // redirect Jakarta/Apache Commons Logging to SLF4J
+
+    // Micronaut Bill of Materials, which defines dependency versions
+    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    kapt platform("io.micronaut:micronaut-bom:$micronautVersion")
+    kaptTest platform("io.micronaut:micronaut-bom:$micronautVersion")
 }
 
 
