@@ -2,9 +2,24 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.7.10"
     id("org.jetbrains.kotlin.kapt") version "1.7.10"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.7.10"
+
+    // Bundle all dependencies into one fat shadowed jar.
+    // (Gets automatically triggered when application plugin is present)
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.5.0"
+
+    // Add no-argument constructors as they are needed for JPA (see https://kotlinlang.org/docs/reference/compiler-plugins.html#jpa-support).
+    id "org.jetbrains.kotlin.plugin.jpa" version "1.7.10"
+
+    // Plugin for gRPC protobuf generation
+    id 'com.google.protobuf' version "0.8.19"
+
+    //id("io.micronaut.application") version "3.5.0" // is equivalent to:
+    id 'io.micronaut.minimal.application' version '3.5.0'
+    //id 'io.micronaut.docker' version '3.5.0'
+    id 'io.micronaut.graalvm' version '3.5.0'
+    //id 'application'
 }
+
 
 version = "0.1"
 group = "com.example"
