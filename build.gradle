@@ -50,6 +50,17 @@ dependencies {
     /// Provide kotlin-reflect although not used, as the jackson-kotlin module might provide its own, but maybe for an earlier Kotlin version, which would mess up things (or at least yield warnings).
     implementation "org.jetbrains.kotlin:kotlin-reflect"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
+
+    // Tests
+    /// JUnit
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.junit.jupiter:junit-jupiter-params"
+    testImplementation "io.micronaut.test:micronaut-test-junit5"
+    /// Mockito
+    //testImplementation "org.mockito:mockito-junit-jupiter:$mockitoJunitJupiterVersion"
+    /// Assertions
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
 }
 
 
