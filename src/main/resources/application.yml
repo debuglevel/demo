@@ -134,7 +134,7 @@ jpa:
           auto: none
 
 liquibase:
-  enabled: true
+  enabled: false
   datasources:
     default:
       change-log: 'liquibase-changelogs/root.xml'
