@@ -62,7 +62,7 @@ apply plugin: 'org.hibernate.orm'
 ext {
     _group = applicationGroup
     _module = applicationModule
-    _mainClass = _group + "." + _module + ".Application"
+    _mainClass = _group + "." + _module + ".ApplicationKt"
     _title = applicationTitle
 }
 
