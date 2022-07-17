@@ -84,6 +84,10 @@ dependencies {
     //implementation "io.micronaut.rxjava2:micronaut-rxjava2" // use RxJava2 for existing implementations (e.g. ConfigurableCredentialAuthenticationProvider)
     implementation "io.micronaut.reactor:micronaut-reactor"
     implementation "io.micronaut.reactor:micronaut-reactor-http-client"
+
+    // Micronaut Validation
+    kapt "io.micronaut:micronaut-validation"
+    //implementation 'io.micronaut.configuration:micronaut-hibernate-validator' // if full Bean Validator 2.0 compliance is needed
 }
 
 
