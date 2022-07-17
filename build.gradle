@@ -119,6 +119,10 @@ dependencies {
 
     // Micronaut Service registration and discovery
     implementation "io.micronaut.discovery:micronaut-discovery-client"
+
+    // Micronaut OpenAPI integration
+    kapt "io.micronaut.openapi:micronaut-openapi"
+    implementation "io.swagger.core.v3:swagger-annotations"
 }
 
 
