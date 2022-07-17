@@ -171,6 +171,8 @@ graalvmNative {
             // verbose = true
 
             buildArgs.add("--trace-class-initialization=kotlin.KotlinVersion,kotlin.jvm.internal.Reflection")
+
+            buildArgs.add("-Ob")
         }
     }
 }
