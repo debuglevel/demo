@@ -1,0 +1,37 @@
+name: "nativeCompile"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  native-compile:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install GraalVM 22.1.0 using SDKMAN
+        uses: sdkman/sdkman-action@master
+        id: sdkman
+        with:
+          candidate: java
+          version: 22.1.0-grl
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+
+      - name: Ensure traditional build works
+        run: ./gradlew build
+
+      - name: Native compile
+        run: ./gradlew nativeCompile
