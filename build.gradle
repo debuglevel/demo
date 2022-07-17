@@ -41,9 +41,15 @@ dependencies {
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    implementation "org.jetbrains.kotlin:kotlin-reflect"
     runtimeOnly "ch.qos.logback:logback-classic:1.2.11"
     runtimeOnly "net.logstash.logback:logstash-logback-encoder:7.2"
+
+
+
+    // Kotlin
+    /// Provide kotlin-reflect although not used, as the jackson-kotlin module might provide its own, but maybe for an earlier Kotlin version, which would mess up things (or at least yield warnings).
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
 }
 
 
