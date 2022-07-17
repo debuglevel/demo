@@ -27,6 +27,7 @@ dependencies {
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation "org.jetbrains.kotlin:kotlin-reflect"
+    runtimeOnly "ch.qos.logback:logback-classic:1.2.11"
 }
 
 
